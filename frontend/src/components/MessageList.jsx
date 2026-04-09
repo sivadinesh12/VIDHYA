@@ -2,18 +2,12 @@ import React from 'react';
 import { Bot, User } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import FileMessage from './FileMessage';
-import watermarkLogo from '../logo/mylogo.png'; // adjust path if needed
+
 
 const MessageList = ({ messages, isTyping, messagesEndRef, formatTime }) => {
   return (
     <main className="chat-main">
       <div className="messages-container">
-        {/* Watermark in background */}
-        <img
-          src={watermarkLogo}
-          alt="Watermark"
-          className="chat-watermark"
-        />
 
         {messages.map((message) => (
           <div key={message.id} className={`message ${message.sender}`}>
