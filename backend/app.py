@@ -13,7 +13,7 @@ app = FastAPI()
 # Update this URL to match your React dev server (usually 5173 or 3000)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"], 
+    allow_origins=["https://vidhya-five.vercel.app"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
