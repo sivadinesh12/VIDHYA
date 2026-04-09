@@ -52,11 +52,11 @@ const handleSendMessage = async (e) => {
   try {
     console.log("✉️ Sending to backend:", inputText);
 
-    const res = await fetch('http://localhost:8000/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include', // ✅ Session support
-      body: JSON.stringify({ message: inputText })
+    const res = await fetch("https://vidhya-rj6h.onrender.com/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include", // ✅ Session support
+      body: JSON.stringify({ message: inputText }),
     });
 
     const data = await res.json();
