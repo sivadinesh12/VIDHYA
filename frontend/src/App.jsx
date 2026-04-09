@@ -1,9 +1,9 @@
-import React from 'react';
-import { useChat } from './hooks/useChat';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import MessageList from './components/MessageList';
-import MessageInput from './components/MessageInput';
+import React from "react";
+import { useChat } from "./hooks/useChat";
+import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
+import MessageList from "./components/MessageList";
+import MessageInput from "./components/MessageInput";
 
 function App() {
   const {
@@ -24,7 +24,7 @@ function App() {
     handleChatSelect,
     handleDeleteChat,
     formatTime,
-    formatChatTime
+    formatChatTime,
   } = useChat();
 
   return (
@@ -41,10 +41,7 @@ function App() {
       />
 
       <div className="main-content">
-        <Header 
-          sidebarOpen={sidebarOpen} 
-          setSidebarOpen={setSidebarOpen} 
-        />
+        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         <MessageList
           messages={messages}
@@ -63,7 +60,12 @@ function App() {
         />
       </div>
 
-      {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
+      {sidebarOpen && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
     </div>
   );
 }
