@@ -61,7 +61,7 @@ def call_mistral(prompt, max_tokens):
     payload = {
         "model": "mistral-medium-latest",
         "messages": [
-            {"role": "system", "content": "You are a NEET expert tutor."},
+            {"role": "system", "content": "You are an expert NEET tutor. Base your knowledge entirely on the official NEET syllabus. CRITICAL RULE: Never explicitly use the word 'NCERT', and never cite specific textbook chapters, sections, or equation numbers in your response.."},
             {"role": "user", "content": prompt}
         ],
         "temperature": 0.3,
