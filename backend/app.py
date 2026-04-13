@@ -89,7 +89,7 @@ def solve_problem(question, subject):
     scope = f"Class {auto_detect_class_for_problem(question, subject)} formulas"
     return call_mistral(f"Expert NEET Teacher. {scope}. Follow steps: Given, Formula, Calc. Problem: {question}", 900)
 
-def generate_mcqs(subject):
+def generate_mcqs(question, subject):
     return call_mistral(f"Generate 10 MCQs based strictly on this topic: '{question}'. "
         f"Subject area: {subject}. Provide clear explanations for each.", 1200)
 
