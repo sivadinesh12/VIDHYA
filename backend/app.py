@@ -45,6 +45,7 @@ def detect_subject(text):
     text = text.lower()
     if any(w in text for w in ["force", "current", "voltage", "motion", "energy"]): return "Physics"
     if any(w in text for w in ["atom", "reaction", "mole", "ph"]): return "Chemistry"
+    if any(w in text for w in ["derivative", "integral", "matrix", "calculus", "algebra", "equation", "function", "probability"]): return "Mathematics"
     return "Biology"
 
 def auto_detect_class_for_problem(text, subject):
@@ -52,7 +53,8 @@ def auto_detect_class_for_problem(text, subject):
     class12_keywords = {
         "Physics": ["electric", "current", "potential", "capacitance", "magnetic"],
         "Chemistry": ["electrochemistry", "kinetics"],
-        "Biology": ["genetics", "biotechnology"]
+        "Biology": ["genetics", "biotechnology"],
+        "Mathematics": ["derivative", "integral", "matrix", "determinant", "vector", "3d", "probability"]
     }
     if any(k in text for k in class12_keywords.get(subject, [])): return "12"
     return "11"
@@ -61,7 +63,13 @@ def call_mistral(prompt, max_tokens):
     payload = {
         "model": "mistral-medium-latest",
         "messages": [
-            {"role": "system", "content": "You are an expert NEET tutor. Base your knowledge entirely on the official NEET syllabus. CRITICAL RULE: Never explicitly use the word 'NCERT', and never cite specific textbook chapters, sections, or equation numbers in your response.."},
+            {"role": "system", "content": "You are an expert tutor for both NEET and JEE. Your knowledge base, facts, and formulas "
+                    "must be derived entirely and strictly from the standard Indian Class 11 and 12 curriculum "
+                    "(including Mathematics, Physics, Chemistry, and Biology). "
+                    "CRITICAL OUTPUT RULE: You are strictly forbidden from mentioning your source. "
+                    "NEVER use the acronym 'NCERT', NEVER use the words 'textbook' or 'book', "
+                    "and NEVER cite specific chapters, pages, or equation numbers. "
+                    "Present the answer naturally as your own expert knowledge."},
             {"role": "user", "content": prompt}
         ],
         "temperature": 0.3,
