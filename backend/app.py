@@ -77,6 +77,9 @@ def call_mistral(prompt, max_tokens):
         "max_tokens": max_tokens
     }
     response = requests.post(API_URL, headers=HEADERS, json=payload)
+    if response.status_code != 200:
+        print(f"🚨 MISTRAL ERROR: {response.status_code} - {response.text}")
+        raise Exception(f"Mistral API failed with status {response.status_code}")
     return response.json()["choices"][0]["message"]["content"]
 
 def generate_theory(question, subject):
