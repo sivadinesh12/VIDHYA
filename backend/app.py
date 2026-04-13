@@ -43,8 +43,9 @@ def detect_intent(text):
 
 def detect_subject(text):
     text = text.lower()
-    if any(w in text for w in ["force", "current", "voltage", "motion", "energy"]): return "Physics"
-    if any(w in text for w in ["atom", "reaction", "mole", "ph"]): return "Chemistry"
+    if any(w in text for w in ["force", "current", "voltage", "motion", "energy", "velocity", "acceleration", "optics"]): return "Physics"
+    # ✅ ADDED KINETICS AND CHEMICAL
+    if any(w in text for w in ["atom", "reaction", "mole", "ph", "chemical", "kinetics", "organic"]): return "Chemistry"
     if any(w in text for w in ["derivative", "integral", "matrix", "calculus", "algebra", "equation", "function", "probability"]): return "Mathematics"
     return "Biology"
 
@@ -86,7 +87,8 @@ def solve_problem(question, subject):
     return call_mistral(f"Expert NEET Teacher. {scope}. Follow steps: Given, Formula, Calc. Problem: {question}", 900)
 
 def generate_mcqs(subject):
-    return call_mistral(f"Generate 10 NEET MCQs for {subject} strictly from NCERT with explanations.", 1200)
+    return call_mistral(f"Generate 10 MCQs based strictly on this topic: '{question}'. "
+        f"Subject area: {subject}. Provide clear explanations for each.", 1200)
 
 # --- Updated Route ---
 @app.post("/chat")
@@ -99,7 +101,7 @@ async def chat_endpoint(request: ChatRequest):
         if intent == "ncert":
             ans = "📘 [NCERT Class 11](https://ncert.nic.in/textbook.php?lebo1=0-16) | 📗 [NCERT Class 12](https://ncert.nic.in/textbook.php?lebo1=17-32)"
         elif intent == "mcq":
-            ans = generate_mcqs(subject)
+            ans = generate_mcqs(user_input,subject)
         elif intent == "problem":
             ans = solve_problem(user_input, subject)
         else:
