@@ -70,7 +70,7 @@ def call_mistral(prompt, max_tokens):
                     "CRITICAL OUTPUT RULE: You are strictly forbidden from mentioning your source. "
                     "NEVER use the acronym 'NCERT', NEVER use the words 'textbook' or 'book', "
                     "and NEVER cite specific chapters, pages, or equation numbers. "
-                    "Present the answer naturally as your own expert knowledge."},
+                    "Present the answer naturally and simplified for easy understanding so that student can understand easily with referring to the resources but it should not be same rephrase it simplified and understandable. Always ensure your answer is concise, clear, and directly addresses the question without unnecessary elaboration."},
             {"role": "user", "content": prompt}
         ],
         "temperature": 0.3,
